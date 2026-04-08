@@ -39,31 +39,50 @@ waypoints.append([xright - w / 2, y])
 # second pass added here
 
 if y == ybottom + w/2:
-    step = w
-    end_condition = ytop - w/2
-if y == ytop - w/2:
-    step = -w
-    end_condition = ybottom + w/2   
+    while y < ytop - w / 2:
+        
+        if index % 2 == 0:
+            y += w
+        else:
+            if x == xleft + w / 2:
+                x = xright - w / 2
+            elif x == xright - w / 2:
+                x = xleft + w / 2
+        index += 1
 
-while y < end_condition:
-    if index % 2 == 0:
-        y += step
-    else:
-        if x == xleft + w / 2:
-            x = xright - w / 2
-        elif x == xright - w / 2:
-            x = xleft + w / 2
+        waypoints.append([x,y])
+
+
+    waypoints.append([x, ytop - w / 2])
     index += 1
-
-    waypoints.append([x,y])
-
-
-waypoints.append([x, end_condition])
-index += 1
-
-if x == xleft + w / 2:
-    x = xright - w / 2
-elif x == xright - w / 2:
-    x = xleft + w / 2
     
-waypoints.append([x, end_condition])
+    if x == xleft + w / 2:
+        x = xright - w / 2
+    elif x == xright - w / 2:
+        x = xleft + w / 2
+        
+    waypoints.append([x, ytop - w / 2])
+elif y == ytop - w/2:
+            while y > ybottom + w / 2:
+                
+                if index % 2 == 0:
+                    y -= w
+                else:
+                    if x == xleft + w / 2:
+                        x = xright - w / 2
+                    elif x == xright - w / 2:
+                        x = xleft + w / 2
+                index += 1
+
+                waypoints.append([x,y])
+
+        
+            waypoints.append([x, ybottom + w / 2])
+            index += 1
+            
+            if x == xleft + w / 2:
+                x = xright - w / 2
+            elif x == xright - w / 2:
+                x = xleft + w / 2
+                
+            waypoints.append([x, ybottom + w / 2])
